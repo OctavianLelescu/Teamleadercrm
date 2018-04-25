@@ -11,6 +11,11 @@ class TotalDiscount
         $this->total = $total;
     }
 
+    /**
+     * Get the ten percent discount message
+     *
+     * @return string
+     */
     function getTenPercentDiscount() {
         $discountTotal = $this->total * (self::DISCOUNT / 100);
         $discountedPrice = $this->total - $discountTotal;

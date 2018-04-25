@@ -10,6 +10,11 @@ class DiscountController extends Controller
 {
     const MAX_DISCOUNT = 1000;
 
+    /**
+     * Get discount messages
+     *
+     * @return bool|string
+     */
     public function getDiscount() {
 
         if(request('total') > self::MAX_DISCOUNT) {
