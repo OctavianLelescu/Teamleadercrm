@@ -22,18 +22,18 @@ class CategoryDiscount
     {
 
         $categoriesQuantities = $this->getProductCategoryIds($this->items);
-        $discountMessage      = '';
+        $discountMessage      = [];
 
         if ($this->getTotalQuantityByCategory($categoriesQuantities, 2) >= 5) {
-            $discountMessage = "Got a sixth product for free from category 'Switches' \n\r";
+            $discountMessage = ["Got a sixth product for free from category 'Switches'"];
         }
 
         if ($this->getTotalQuantityByCategory($categoriesQuantities, 1) >= 2) {
-            $discountMessage = $discountMessage . "Got a 20% discount on Product ID: ".
-                $this->getCheapestProductFromCategory($categoriesQuantities, 1) . " from category 'Tools' \n\r";
+            $discountMessage = array_merge($discountMessage , ["Got a 20% discount on Product ID: ".
+                $this->getCheapestProductFromCategory($categoriesQuantities, 1) . " from category 'Tools'"]);
         }
 
-        return ($discountMessage != '') ? $discountMessage : false;
+        return (!empty($discountMessage)) ? response()->json(['discount' => $discountMessage]) : false;
     }
 
     /**
