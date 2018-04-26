@@ -23,6 +23,7 @@ git clone git@github.com:arnia/TeamLeaderCRMTest.git
     DB_USERNAME=root
     DB_PASSWORD=
 ```
+*don't forget to create your database in MySQL
 
 ##### Update application packages and dependencie
 ```bash
