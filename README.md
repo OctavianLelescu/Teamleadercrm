@@ -12,7 +12,7 @@ MariaDB 10.1.30
 
 ##### Clone the project files
 ```bash
-git clone git@github.com:OctavianLelescu/Teamleadercrm.git
+git clone git@github.com:arnia/TeamLeaderCRMTest.git
 ```
 *for wamp you can clone in folder /www; for xampp is /htdocs)
 
@@ -62,6 +62,6 @@ After this you can send request orders in your browser to the following endpoint
 ```bash
 http://discount-test/api/discount
 ```
-To test the order requests i've used the Postman application on my local
+To test the order requests i've used the Postman application on my local you have [here](/discount-test/postman_screens/) some print screens
 
 

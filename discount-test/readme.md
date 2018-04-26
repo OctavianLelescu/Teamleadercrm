@@ -1,59 +1,67 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+# Teamleadercrm
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+Teamleadercrm discount test
 
-## About Laravel
+#### Prerequisites:
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+PHP 7+
+Apache 2.4.29
+MariaDB 10.1.30
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+#### Installation with WAMP/XAMPP:
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications.
+##### Clone the project files
+```bash
+git clone git@github.com:arnia/TeamLeaderCRMTest.git
+```
+*for wamp you can clone in folder /www; for xampp is /htdocs)
 
-## Learning Laravel
+##### Change the file .env and add your database config example by default i have already configured my local config:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of any modern web application framework, making it a breeze to get started learning the framework.
+```bash
+    DB_DATABASE=teamleader
+    DB_USERNAME=root
+    DB_PASSWORD=
+```
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 1100 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
+##### Update application packages and dependencie
+```bash
+composer install
+```
+*you need to have the latest composer version installed
 
-## Laravel Sponsors
+##### Add the cripting key for laravel/homestead
+```bash
+php artisan key:generate
+```
+*php need to already be set as environment variable
 
-We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell):
+##### Run all database migrations and seeds
+```bash
+composer dump-autoload
+php artisan migrate:refresh --seed
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Pulse Storm](http://www.pulsestorm.net/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
+##### To access the app you can make a virtual host pointing to public folder of the app. To do that you can add in httpd-vhosts.conf:
+```bash
+<VirtualHost *:80>
+    ServerName discount-test
+    DocumentRoot "C:/xampp/htdocs/Teamleadercrm/discount-test/public"
+    SetEnv APPLICATION_ENV "development"
+    <Directory "C:/xampp/htdocs/Teamleadercrm/discount-test/public">
+        DirectoryIndex index.php
+        AllowOverride All
+        Order allow,deny
+        Allow from all
+    </Directory>
+</VirtualHost>
+```
+*also add ```127.0.0.1 discount-test``` in your hosts file
 
-## Contributing
+After this you can send request orders in your browser to the following endpoint
+```bash
+http://discount-test/api/discount
+```
+To test the order requests i've used the Postman application on my local you have [here](/postman_screens/) some print screens
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
