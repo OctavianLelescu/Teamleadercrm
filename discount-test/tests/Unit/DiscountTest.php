@@ -42,7 +42,10 @@ class DiscountTest extends TestCase
 
         $response = $this->call('POST', route('discount'), [], [], [], $server, json_encode($order1));
 
-        $response->assertJson(['discount' => "You got a 10% discount and saved 118.15. Your order will now cost 1063.35."]);
+        $response->assertJson([
+            'discount-description' => "You got a 10% discount and saved 118.15. Your order will now cost 1063.35.",
+            'discount-value'       => 118.15,
+        ]);
     }
 
     /**
@@ -74,7 +77,7 @@ class DiscountTest extends TestCase
 
         $response = $this->call('POST', route('discount'), [], [], [], $server, json_encode($order2));
 
-        $response->assertJson(['discount' => ["Got a sixth product for free from category 'Switches'"]]);
+        $response->assertJson([['discount-description' => "Got a sixth product for free from category 'Switches'", 'discount-value' => 4.99,]]);
     }
 
     /**
@@ -112,6 +115,6 @@ class DiscountTest extends TestCase
 
         $response = $this->call('POST', route('discount'), [], [], [], $server, json_encode($order3));
 
-        $response->assertJson(['discount' => ["Got a 20% discount on Product ID: A101 from category 'Tools'"]]);
+        $response->assertJson([['discount-description' => "Got a 20% discount on Product ID: A101 from category 'Tools'", 'discount-value' => 1.95]]);
     }
 }
